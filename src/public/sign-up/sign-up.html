@@ -1,0 +1,57 @@
+
+<div class="container">
+
+<form name='signUpFrom' novalidate>
+<div class="row">
+<div class="col-md-4">
+  <h4>First Name</h4>
+  <input  class="form-control" type="text" name="firstname" placeholder="first name"
+          ng-model="signUpCtrl.user.firstname" required
+          ng-minlength="3">
+  <span
+      ng-if="(signUpFrom.firstname.$error.minlength || signUpFrom.firstname.$error.required)
+      && signUpFrom.firstname.$touched">
+      first name must be at least 3 characters long
+  </span>
+
+  <h4>Last Name</h4>
+  <input class="form-control" type="text" name="lastname" placeholder="last name"
+          ng-model="signUpCtrl.user.lastname" required
+          ng-minlength="3">
+  <span
+      ng-if="(signUpFrom.lastname.$error.minlength || signUpFrom.lastname.$error.required)
+      && signUpFrom.lastname.$touched">
+      last name must be at least 3 characters long
+  </span>
+
+  <h4>E-Mail</h4>
+  <input class="form-control" type="email" name="email" placeholder="Email"
+    ng-model="signUpCtrl.user.email"
+    required>
+    <span ng-if="signUpFrom.email.$invalid && signUpFrom.email.$touched">
+      Must be a valid email address: handle@domain format
+    </span>
+
+    <h4>phone number</h4>
+  <input class="form-control" type="text" name="phone" placeholder="Phone ###-###-####"
+    ng-model="signUpCtrl.user.phone"
+    pattern="(\d{3})-(\d{3})-(\d{4})">
+    <span ng-if="signUpFrom.phone.$invalid && signUpFrom.phone.$touched">
+      Phone must be in the format ###-###-####.
+    </span>
+
+    <h4>Favorite dish</h4>
+    <input  class="form-control" type="text" name="favoritedish"
+            placeholder="enter the short name of your favorite dish"
+            ng-model="signUpCtrl.user.favoritedish">
+
+  <button
+    ng-disabled="signUpFrom.$invalid"
+    ng-click="signUpCtrl.submit(signUpCtrl.user.favoritedish)">
+    Submit
+  </button>
+
+</div>
+  </div>
+</form>
+</div>
