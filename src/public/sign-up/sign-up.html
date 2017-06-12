@@ -43,13 +43,24 @@
     <h4>Favorite dish</h4>
     <input  class="form-control" type="text" name="favoritedish"
             placeholder="enter the short name of your favorite dish"
-            ng-model="signUpCtrl.user.favoritedish">
-
+            ng-model="signUpCtrl.user.favoritedish" ng-minlength="2" ng-maxlength="4">
+    <span
+        ng-if="(signUpFrom.favoritedish.$error.minlength || signUpFrom.favoritedish.$error.maxlength)
+        && signUpFrom.favoritedish.$touched">
+        Favorite Dish must have 2 to 4 charchter 1 or 2 letter follow by 1 or 2 number
+    </span>
+    <span ng-if="!signUpCtrl.menuItemFound && signUpCtrl.submitsucess">
+          No such menu number exists
+    </span>
   <button
+    ng-hide="signUpCtrl.menuItemFound && signUpCtrl.submitsucess"
     ng-disabled="signUpFrom.$invalid"
     ng-click="signUpCtrl.submit(signUpCtrl.user.favoritedish)">
     Submit
   </button>
+  <span ng-if="signUpCtrl.menuItemFound && signUpCtrl.submitsucess">
+        Your information has been saved
+  </span>
 
 </div>
   </div>

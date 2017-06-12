@@ -1,22 +1,28 @@
 (function () {
-"use strict";
+  "use strict";
 
-angular.module('public')
-.controller('SignUpController', SignUpController);
+  angular.module('public')
+  .controller('SignUpController', SignUpController);
 
-SignUpController.$inject = ['MenuService'];
-function SignUpController(MenuService) {
-  var $ctrl = this;
-  $ctrl.menuItemFound = false;
+  SignUpController.$inject = ['MenuService', 'UserService'];
+  function SignUpController(MenuService, UserService) {
+    var $ctrl = this;
+    $ctrl.menuItemFound = false;
+    $ctrl.submitsucess = false;
 
-$ctrl.submit = function () {
-  console.log($ctrl);
-  console.log($ctrl.user.favoritedish);
-  $ctrl.favoriteDishExisis = MenuService.getFavoriteDish($ctrl.user.favoritedish);
-  console.log($ctrl.favoriteDishExisis);
-  // // $ctrl.completed = true;
+    $ctrl.submit = function () {
+      MenuService.getFavoriteDish($ctrl.user.favoritedish).then(function success(response) {
+        $ctrl.submitsucess = true;
+        $ctrl.menuItemFound = true;
+        $ctrl.user.favoritedishitem = response;
+        UserService.setUser($ctrl.user)
+      }, function error( response) {
+        $ctrl.submitsucess = true;
+        $ctrl.menuItemFound = false;
+      }
+    );
 
-};
+  };
 
 
 
