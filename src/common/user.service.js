@@ -7,14 +7,16 @@
   UserService.$inject = [];
   function UserService() {
     var service = this;
-    var user = {};
+    // var user = {};
 
     service.setUser = function (user) {
-        var user = user;        
+
+        service.user = user;
+
     };
 
     service.getUser = function () {
-      return user;
+      return service.user;
     }
 
   }

@@ -1,1 +1,42 @@
+
+<div class="container">
+
 <h1>My Info</h1>
+  <div ng-if="!MyInfoCtrl.user">
+    <p>
+      Not Signed Up Yet. <a ui-sref="public.signup">Sign up</a> Now!
+    </p>
+  </div>
+
+  <div ng-if='MyInfoCtrl.user'>
+    First name: {{ MyInfoCtrl.user.firstname }} <br />
+    Last name: {{ MyInfoCtrl.user.lastname }} <br />
+    E-Mail: {{ MyInfoCtrl.user.email }} <br />
+    Phone: {{ MyInfoCtrl.user.phone }} <br />
+
+
+  <div class="menu-item-tile col-md-6">
+    <div class="row">
+      <div class="col-sm-5">
+        <h3>Favorite Dish</h3><br />
+        <div class="menu-item-photo">
+          <div>{{MyInfoCtrl.user.favoritedishitem.short_name}}</div>
+          <img class="img-responsive" width="250" height="150"
+          ng-src="https://itayfriedman-course5.herokuapp.com/images/{{MyInfoCtrl.user.favoritedishitem.short_name}}.jpg"
+          alt="{{MyInfoCtrl.user.favoritedishitem.name}}">
+        </div>
+        <div class="menu-item-price">{{MyInfoCtrl.user.favoritedishitem.price_small | currency}}
+          <span> {{MyInfoCtrl.user.favoritedishitem.small_portion_name}}</span>
+          {{MyInfoCtrl.user.favoritedishitem.price_large | currency}}
+          <span>{{MyInfoCtrl.user.favoritedishitem.large_portion_name}}</span>
+        </div>
+      </div>
+      <div class="menu-item-description col-sm-7">
+        <h3 class="menu-item-title">{{MyInfoCtrl.user.favoritedishitem.name}}</h3>
+        <p class="menu-item-details">{{MyInfoCtrl.user.favoritedishitem.description}}</p>
+      </div>
+    </div>
+    <hr class="visible-xs">
+  </div>
+
+</div>

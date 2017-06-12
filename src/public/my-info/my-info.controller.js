@@ -4,13 +4,10 @@
   angular.module('public')
   .controller('MyInfoController', MyInfoController);
 
-  MyInfoController.$inject = ['UserService'];
-  function MyInfoController(UserService) {
-    var user = UserService.getUser ();
-    console.log(user);
-    
-
-
+  MyInfoController.$inject = ['user'];
+  function MyInfoController(user) {
+    var $ctrl = this;
+    $ctrl.user = user;
   }
 
 

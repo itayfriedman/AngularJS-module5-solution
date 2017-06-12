@@ -52,7 +52,11 @@ function routeConfig ($stateProvider) {
       templateUrl: 'src/public/my-info/my-info.html',
       controller: 'MyInfoController',
       controllerAs: 'MyInfoCtrl',
-      
+      resolve: {
+        user: ['UserService', function(UserService){
+        return UserService.getUser();
+      }]
+    }
     });
 }
 })();
